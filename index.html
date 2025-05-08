@@ -1,0 +1,326 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gigahrtz33 - Digital Art Gallery</title>
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: #1a1a1a;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: #0d1b2a;
+            color: #fff;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: #00ffcc;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ff0077;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px #00ffcc;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero .btn {
+            background: #ff0077;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .hero .btn:hover {
+            background: #cc005f;
+        }
+
+        /* Gallery Preview Section */
+        .gallery {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: #262626;
+        }
+
+        .gallery h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #00ffcc;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #00ffcc;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+            border-color: #ff0077;
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: #1a1a1a;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #00ffcc;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 2rem;
+            background: #0d1b2a;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #00ffcc;
+        }
+
+        .contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact input, .contact textarea {
+            padding: 0.8rem;
+            border: 1px solid #00ffcc;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: #262626;
+            color: #e0e0e0;
+        }
+
+        .contact textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .contact button {
+            background: #ff0077;
+            color: #fff;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .contact button:hover {
+            background: #cc005f;
+        }
+
+        /* Footer */
+        footer {
+            background: #0d1b2a;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Gigahrtz33 Digital Art</h1>
+        <p>Explore stunning digital artworks blending enhanced photography and AI-generated masterpieces.</p>
+        <a href="#gallery" class="btn">Discover Our Art</a>
+    </section>
+
+    <!-- Gallery Preview -->
+    <section id="gallery" class="gallery">
+        <h2>Featured Digital Art</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd66f30" alt="AI-Generated Abstract">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1620121692029-d088224ddc74" alt="Enhanced Photo Art">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1617299040132-656d0e4a1d72" alt="Digital Landscape">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e" alt="AI Cyber Art">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About Gigahrtz33</h2>
+        <p>Gigahrtz33 is your destination for cutting-edge digital art. We fuse enhanced everyday photography with AI-generated imagery to create unique, vibrant pieces that push creative boundaries. Discover art that resonates with the future.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Gigahrtz33. All rights reserved.</p>
+    </footer>
+</body>
+</html>
