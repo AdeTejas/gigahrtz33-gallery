@@ -1,48 +1,10 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gigahrtz33 - Digital Art Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
     <style>
         /* Reset default styles */
         * {
@@ -52,17 +14,17 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #e0e0e0;
-            background: #1a1a1a;
+            font-family: 'Lora', serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
         }
 
         /* Navigation Bar */
         nav {
-            background: #0d1b2a;
-            color: #fff;
-            padding: 1rem;
+            background: #1c2526;
+            color: #f5f5f5;
+            padding: 1.5rem;
             position: fixed;
             width: 100%;
             top: 0;
@@ -76,74 +38,80 @@
         }
 
         nav ul li {
-            margin: 0 1.5rem;
+            margin: 0 2rem;
         }
 
         nav ul li a {
-            color: #00ffcc;
+            color: #d4af37;
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
         }
 
         nav ul li a:hover {
-            color: #ff0077;
+            color: #f5f5f5;
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/hero-background.jpg') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: #fff;
+            color: #f5f5f5;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 10px #00ffcc;
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            font-style: italic;
         }
 
         .hero .btn {
-            background: #ff0077;
-            color: #fff;
-            padding: 0.8rem 1.5rem;
+            background: #d4af37;
+            color: #1c2526;
+            padding: 1rem 2rem;
             text-decoration: none;
             border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .hero .btn:hover {
-            background: #cc005f;
+            background: #f5f5f5;
+            color: #1c2526;
         }
 
         /* Gallery Preview Section */
         .gallery {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             text-align: center;
-            background: #262626;
+            background: #fafafa;
         }
 
         .gallery h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #00ffcc;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #1c2526;
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -152,46 +120,96 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
-            border-radius: 10px;
-            border: 2px solid #00ffcc;
-            transition: transform 0.3s, border-color 0.3s;
+            border-radius: 8px;
+            border: 1px solid #d4af37;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .gallery-item img:hover {
-            transform: scale(1.05);
-            border-color: #ff0077;
+            transform: scale(1.03);
+            border-color: #1c2526;
+        }
+
+        .gallery-item p {
+            margin-top: 0.8rem;
+            font-size: 1rem;
+            color: #1c2526;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border: 4px solid #d4af37;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #f5f5f5;
+            font-size: 2rem;
+            cursor: pointer;
+            background: #1c2526;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .close:hover {
+            background: #d4af37;
         }
 
         /* About Section */
         .about {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             text-align: center;
-            background: #1a1a1a;
+            background: #f5f5f5;
         }
 
         .about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: #00ffcc;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #1c2526;
         }
 
         .about p {
             max-width: 800px;
             margin: 0 auto;
             font-size: 1.1rem;
+            color: #333;
         }
 
         /* Contact Section */
         .contact {
-            padding: 4rem 2rem;
-            background: #0d1b2a;
+            padding: 5rem 2rem;
+            background: #1c2526;
             text-align: center;
         }
 
         .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: #00ffcc;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #d4af37;
         }
 
         .contact form {
@@ -199,54 +217,58 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         .contact input, .contact textarea {
-            padding: 0.8rem;
-            border: 1px solid #00ffcc;
+            padding: 1rem;
+            border: 1px solid #d4af37;
             border-radius: 5px;
+            font-family: 'Lora', serif;
             font-size: 1rem;
-            background: #262626;
-            color: #e0e0e0;
+            background: #fafafa;
+            color: #333;
         }
 
         .contact textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 120px;
         }
 
         .contact button {
-            background: #ff0077;
-            color: #fff;
-            padding: 0.8rem;
+            background: #d4af37;
+            color: #1c2526;
+            padding: 1rem;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .contact button:hover {
-            background: #cc005f;
+            background: #f5f5f5;
+            color: #1c2526;
         }
 
         /* Footer */
         footer {
-            background: #0d1b2a;
-            color: #e0e0e0;
+            background: #1c2526;
+            color: #f5f5f5;
             text-align: center;
-            padding: 1rem;
+            padding: 1.5rem;
+            font-size: 0.9rem;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
             .hero p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             nav ul {
@@ -255,11 +277,19 @@
             }
 
             nav ul li {
-                margin: 0.5rem 0;
+                margin: 0.8rem 0;
             }
 
             .gallery-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                max-width: 95%;
+            }
+
+            .gallery h2, .about h2, .contact h2 {
+                font-size: 2.2rem;
             }
         }
     </style>
@@ -287,19 +317,49 @@
         <h2>Featured Digital Art</h2>
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="images/26_01_2024 16_09_49.jpg" alt="AI-Generated Abstract">
+                <a href="#modal1" class="modal-trigger">
+                    <img src="images/26_01_2024 16_09_49.jpg" alt="AI-Generated Cityscape">
+                </a>
+                <p>AI-Generated Cityscape</p>
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1620121692029-d088224ddc74" alt="Enhanced Photo Art">
+                <a href="#modal2" class="modal-trigger">
+                    <img src="images/IMG_20241022_185152_237.jpg" alt="Enhanced Photo Portrait">
+                </a>
+                <p>Enhanced Photo Portrait</p>
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1617299040132-656d0e4a1d72" alt="Digital Landscape">
+                <a href="#modal3" class="modal-trigger">
+                    <img src="images/base__f92efbc8-0c37-48ce-8aa7-5ab4bc495caa.png" alt="Digital Landscape Art">
+                </a>
+                <p>Digital Landscape Art</p>
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e" alt="AI Cyber Art">
+                <a href="#modal4" class="modal-trigger">
+                    <img src="images/base_build_me_a_house_minimalist_comic_happy_vibe_muted_colors_e107501a-dced-48da-b1f3-bea228e8ba2d.png" alt="AI Cyber Artwork">
+                </a>
+                <p>AI Cyber Artwork</p>
             </div>
         </div>
     </section>
+
+    <!-- Modals -->
+    <div id="modal1" class="modal">
+        <span class="close">×</span>
+        <img src="images/base_can_I_come_over_1d1bcb70-6a5e-49f7-ab40-22b62efb3bfa.png" alt="AI-Generated Cityscape" class="modal-content">
+    </div>
+    <div id="modal2" class="modal">
+        <span class="close">×</span>
+        <img src="images/base_can_I_come_over_f40f0637-db58-4cf2-8098-d0988777c17a (1).png" alt="Enhanced Photo Portrait" class="modal-content">
+    </div>
+    <div id="modal3" class="modal">
+        <span class="close">×</span>
+        <img src="images/base_character_thinking_about_a_girl_New_York_Pixel_Art_12faac5b-bbf5-478e-a424-598d0f4051eb.png" alt="Digital Landscape Art" class="modal-content">
+    </div>
+    <div id="modal4" class="modal">
+        <span class="close">×</span>
+        <img src="images/base_character_thinking_about_a_girl_New_York_Pixel_Art_1f727136-27e8-4cf5-a2c9-466122207d68.png" alt="AI Cyber Artwork" class="modal-content">
+    </div>
 
     <!-- About Section -->
     <section id="about" class="about">
@@ -322,5 +382,37 @@
     <footer>
         <p>© 2025 Gigahrtz33. All rights reserved.</p>
     </footer>
+
+    <script>
+        // JavaScript to handle modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const modals = document.querySelectorAll('.modal');
+            const triggers = document.querySelectorAll('.modal-trigger');
+            const closes = document.querySelectorAll('.close');
+
+            triggers.forEach(trigger => {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const modalId = this.getAttribute('href');
+                    document.querySelector(modalId).style.display = 'flex';
+                });
+            });
+
+            closes.forEach(close => {
+                close.addEventListener('click', function() {
+                    this.parentElement.style.display = 'none';
+                });
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                modals.forEach(modal => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
