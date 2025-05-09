@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Gigahrtz33, a digital art gallery featuring enhanced photography and AI-generated masterpieces.">
     <title>Gigahrtz33 - Digital Art Gallery</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -55,12 +56,8 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/hero-background.jpg') center/cover no-repeat;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            padding: 10rem 2rem 5rem;
             text-align: center;
             color: #f5f5f5;
         }
@@ -95,47 +92,66 @@
         }
 
         /* Gallery Preview Section */
-        .gallery {
-            padding: 5rem 2rem;
+        .gallery-preview {
+            padding: 3rem 2rem;
             text-align: center;
             background: #fafafa;
         }
 
-        .gallery h2 {
+        .gallery-preview h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
             color: #1c2526;
         }
 
-        .gallery-grid {
+        .gallery-preview-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
+            gap: 2rem;
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .gallery-item img {
+        .gallery-preview-item img {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
             border-radius: 8px;
             border: 1px solid #d4af37;
             transition: transform 0.3s ease, border-color 0.3s ease;
+            loading: lazy;
         }
 
-        .gallery-item img:hover {
+        .gallery-preview-item img:hover {
             transform: scale(1.03);
             border-color: #1c2526;
         }
 
-        .gallery-item p {
-            margin-top: 0.8rem;
-            font-size: 1rem;
+        .gallery-preview-item p {
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
             color: #1c2526;
             text-align: center;
             font-style: italic;
+        }
+
+        .gallery-preview .btn {
+            display: inline-block;
+            margin-top: 2rem;
+            background: #d4af37;
+            color: #1c2526;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .gallery-preview .btn:hover {
+            background: #f5f5f5;
+            color: #1c2526;
         }
 
         /* Modal Styles */
@@ -280,16 +296,16 @@
                 margin: 0.8rem 0;
             }
 
-            .gallery-grid {
+            .gallery-preview-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .gallery-preview h2, .about h2, .contact h2 {
+                font-size: 2.2rem;
             }
 
             .modal-content {
                 max-width: 95%;
-            }
-
-            .gallery h2, .about h2, .contact h2 {
-                font-size: 2.2rem;
             }
         }
     </style>
@@ -299,7 +315,7 @@
     <nav>
         <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -309,38 +325,33 @@
     <section id="home" class="hero">
         <h1>Gigahrtz33 Digital Art</h1>
         <p>Explore stunning digital artworks blending enhanced photography and AI-generated masterpieces.</p>
-        <a href="#gallery" class="btn">Discover Our Art</a>
+        <a href="gallery.html" class="btn">Discover Our Art</a>
     </section>
 
     <!-- Gallery Preview -->
-    <section id="gallery" class="gallery">
-        <h2>Featured Digital Art</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
+    <section class="gallery-preview">
+        <h2>Featured Artworks</h2>
+        <div class="gallery-preview-grid">
+            <div class="gallery-preview-item">
                 <a href="#modal1" class="modal-trigger">
                     <img src="images/26_01_2024 16_09_49.jpg" alt="AI-Generated Cityscape">
                 </a>
                 <p>AI-Generated Cityscape</p>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-preview-item">
                 <a href="#modal2" class="modal-trigger">
                     <img src="images/IMG_20241022_185152_237.jpg" alt="Enhanced Photo Portrait">
                 </a>
                 <p>Enhanced Photo Portrait</p>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-preview-item">
                 <a href="#modal3" class="modal-trigger">
                     <img src="images/base__f92efbc8-0c37-48ce-8aa7-5ab4bc495caa.png" alt="Digital Landscape Art">
                 </a>
                 <p>Digital Landscape Art</p>
             </div>
-            <div class="gallery-item">
-                <a href="#modal4" class="modal-trigger">
-                    <img src="images/base_build_me_a_house_minimalist_comic_happy_vibe_muted_colors_e107501a-dced-48da-b1f3-bea228e8ba2d.png" alt="AI Cyber Artwork">
-                </a>
-                <p>AI Cyber Artwork</p>
-            </div>
         </div>
+        <a href="gallery.html" class="btn">View Full Gallery</a>
     </section>
 
     <!-- Modals -->
@@ -355,10 +366,6 @@
     <div id="modal3" class="modal">
         <span class="close">×</span>
         <img src="images/base_character_thinking_about_a_girl_New_York_Pixel_Art_12faac5b-bbf5-478e-a424-598d0f4051eb.png" alt="Digital Landscape Art" class="modal-content">
-    </div>
-    <div id="modal4" class="modal">
-        <span class="close">×</span>
-        <img src="images/base_character_thinking_about_a_girl_New_York_Pixel_Art_1f727136-27e8-4cf5-a2c9-466122207d68.png" alt="AI Cyber Artwork" class="modal-content">
     </div>
 
     <!-- About Section -->
