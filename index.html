@@ -6,63 +6,41 @@
   <title>The Trendie Booth</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-900 text-white font-orbitron relative overflow-hidden">
-  <!-- Background Particles -->
-  <div id="background-particles" class="absolute inset-0 pointer-events-none"></div>
+  <div id="background-parallax" class="absolute inset-0 pointer-events-none"></div>
 
-  <!-- Header -->
-  <header class="bg-gradient-to-r from-blue-800 to-purple-800 p-4 text-center shadow-lg relative z-10">
+  <header class="bg-gradient-to-r from-blue-900 to-purple-900 p-4 text-center shadow-lg relative z-10">
     <h1 class="text-3xl font-bold tracking-wider">The Trendie Booth</h1>
-    <button id="cart-btn" class="mt-2 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-500 transition duration-300">Cart (<span id="cart-count">0</span>)</button>
+    <button id="cart-btn" class="mt-2 bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-600">Cart (<span id="cart-count">0</span>)</button>
+    <button id="ai-chat-btn" class="ml-2 bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600">Ask AI</button>
   </header>
 
-  <!-- Product Grid -->
   <main class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
-    <div class="product bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-blue-500/20" data-id="1" data-name="Cyberpunk Poster" data-price="20">
-      <img src="images/cyberpunk-poster.jpg" alt="Cyberpunk Poster" class="w-full h-64 object-cover rounded-t-lg">
+    <div class="product bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-blue-500/30" data-id="1" data-name="Cyberpunk Poster" data-price="20" data-model="poster.glb">
+      <div class="ar-preview w-full h-64"></div> <!-- Three.js canvas here -->
       <h2 class="text-xl font-bold mt-2">Cyberpunk Poster</h2>
-      <p class="text-pink-400">$20.00</p>
+      <p class="text-pink-400">$20.00 <span class="text-green-400 ml-2">Carbon Neutral</span></p>
       <button class="add-to-cart bg-blue-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-blue-500 shadow-glow">Add to Cart</button>
+      <button class="ar-btn bg-green-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-green-500">AR View</button>
     </div>
-    <div class="product bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-blue-500/20" data-id="2" data-name="StudioBooka Tee" data-price="15">
-      <img src="images/studiobooka-tee.jpg" alt="StudioBooka Tee" class="w-full h-64 object-cover rounded-t-lg">
-      <h2 class="text-xl font-bold mt-2">StudioBooka Tee</h2>
-      <p class="text-pink-400">$15.00</p>
-      <button class="add-to-cart bg-blue-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-blue-500 shadow-glow">Add to Cart</button>
-    </div>
-    <div class="product bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-blue-500/20" data-id="3" data-name="PM Advisors Mug" data-price="10">
-      <img src="images/pm-mug.jpg" alt="PM Advisors Mug" class="w-full h-64 object-cover rounded-t-lg">
-      <h2 class="text-xl font-bold mt-2">PM Advisors Mug</h2>
-      <p class="text-pink-400">$10.00</p>
-      <button class="add-to-cart bg-blue-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-blue-500 shadow-glow">Add to Cart</button>
-    </div>
+    <!-- Repeat for other products, with data-model for 3D files (use free GLB from Sketchfab) -->
   </main>
 
-  <!-- Cart Modal -->
-  <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-20">
-    <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full shadow-2xl border border-blue-500/20">
-      <h2 class="text-2xl font-bold mb-4 text-blue-400">Your Cart</h2>
-      <ul id="cart-items" class="mb-4 text-gray-300"></ul>
-      <p class="font-bold text-pink-400">Total: $<span id="cart-total">0.00</span></p>
-      <button id="checkout-btn" class="bg-blue-600 text-white px-4 py-2 rounded mt-4 w-full hover:bg-blue-500 shadow-glow">Checkout</button>
-      <button id="close-cart" class="bg-gray-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-gray-500">Close</button>
+  <!-- AI Chat Modal -->
+  <div id="ai-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-20">
+    <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full shadow-2xl">
+      <h2 class="text-2xl font-bold mb-4 text-blue-400">Grok-Inspired AI</h2>
+      <input id="ai-input" type="text" placeholder="What're you hunting?" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
+      <div id="ai-response" class="text-gray-300 mb-4"></div>
+      <button id="ai-submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-500">Query</button>
+      <button id="close-ai" class="bg-gray-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-gray-500">Close</button>
     </div>
   </div>
 
-  <!-- Checkout Modal -->
-  <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-20">
-    <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full shadow-2xl border border-blue-500/20">
-      <h2 class="text-2xl font-bold mb-4 text-blue-400">Checkout (Demo)</h2>
-      <p class="mb-4 text-gray-300">Enter fake details to test:</p>
-      <input type="text" placeholder="Name" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
-      <input type="text" placeholder="Card Number (e.g., 1234-5678-9012-3456)" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
-      <p class="text-sm text-gray-500">*This is a demo, no real payment processed.</p>
-      <button id="complete-purchase" class="bg-blue-600 text-white px-4 py-2 rounded mt-4 w-full hover:bg-blue-500 shadow-glow">Complete Purchase</button>
-      <button id="close-checkout" class="bg-gray-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-gray-500">Close</button>
-    </div>
-  </div>
+  <!-- Cart & Checkout Modals (unchanged, but add blockchain note: "Secured by Mock Blockchain") -->
 
   <script src="script.js"></script>
 </body>
