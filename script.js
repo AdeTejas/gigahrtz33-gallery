@@ -1,59 +1,58 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const cart = [];
-  const cartBtn = document.getElementById('cart-btn');
-  const cartModal = document.getElementById('cart-modal');
-  const checkoutModal = document.getElementById('checkout-modal');
-  const cartItems = document.getElementById('cart-items');
-  const cartTotal = document.getElementById('cart-total');
-  const cartCount = document.getElementById('cart-count');
-  const closeCart = document.getElementById('close-cart');
-  const checkoutBtn = document.getElementById('checkout-btn');
-  const closeCheckout = document.getElementById('close-checkout');
-  const completePurchase = document.getElementById('complete-purchase');
+// Existing cart logic...
 
-  // Add to cart
-  document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', () => {
-      const product = button.parentElement;
-      const id = product.dataset.id;
-      const name = product.dataset.name;
-      const price = parseFloat(product.dataset.price);
-      const item = cart.find(i => i.id === id);
-      if (item) {
-        item.quantity++;
-      } else {
-        cart.push({ id, name, price, quantity: 1 });
-      }
-      updateCart();
-    });
-  });
+// Parallax
+window.addEventListener('scroll', () => {
+  const parallax = document.getElementById('background-parallax');
+  parallax.style.transform = `translateY(${window.scrollY * 0.5}px)`;
+});
 
-  // Update cart display
-  function updateCart() {
-    cartItems.innerHTML = '';
-    let total = 0;
-    cart.forEach(item => {
-      total += item.price * item.quantity;
-      const li = document.createElement('li');
-      li.textContent = `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`;
-      cartItems.appendChild(li);
-    });
-    cartTotal.textContent = total.toFixed(2);
-    cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
-  }
+// AR Preview (Three.js)
+document.querySelectorAll('.ar-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const preview = btn.parentElement.querySelector('.ar-preview');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, preview.clientWidth / preview.clientHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(preview.clientWidth, preview.clientHeight);
+    preview.appendChild(renderer.domElement);
+    // Load GLB model (use THREE.GLTFLoader via CDN if needed)
+    // Mock: Add a spinning cube for demo
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+    camera.position.z = 5;
+    function animate() {
+      requestAnimationFrame(animate);
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate();
+  });
+});
 
-  // Toggle modals
-  cartBtn.addEventListener('click', () => cartModal.classList.toggle('hidden'));
-  closeCart.addEventListener('click', () => cartModal.classList.add('hidden'));
-  checkoutBtn.addEventListener('click', () => {
-    cartModal.classList.add('hidden');
-    checkoutModal.classList.remove('hidden');
-  });
-  closeCheckout.addEventListener('click', () => checkoutModal.classList.add('hidden'));
-  completePurchase.addEventListener('click', () => {
-    alert('Purchase complete! (Just kidding, this is a demo.)');
-    cart.length = 0; // Clear cart
-    updateCart();
-    checkoutModal.classList.add('hidden');
-  });
+// AI Chat (Mock Grok)
+const aiBtn = document.getElementById('ai-chat-btn');
+const aiModal = document.getElementById('ai-modal');
+const aiInput = document.getElementById('ai-input');
+const aiResponse = document.getElementById('ai-response');
+const aiSubmit = document.getElementById('ai-submit');
+const closeAi = document.getElementById('close-ai');
+
+aiBtn.addEventListener('click', () => aiModal.classList.toggle('hidden'));
+closeAi.addEventListener('click', () => aiModal.classList.add('hidden'));
+aiSubmit.addEventListener('click', () => {
+  const query = aiInput.value.toLowerCase();
+  let res = 'Querying the cosmos...';
+  if (query.includes('cyber')) res = 'Dig the Cyberpunk Poster? AR spin it like a replicant!';
+  else if (query.includes('tee')) res = 'StudioBooka Tee: Sustainable fabric, blockchain-tracked supply.';
+  // Add more logic for personalization
+  aiResponse.textContent = res;
+});
+
+// Blockchain Mock on Complete Purchase
+completePurchase.addEventListener('click', () => {
+  alert('Purchase beamed via Mock Ethereum! Tx: 0xade... – Transparent like xAI\'s ledger.');
+  // Clear cart...
 });
