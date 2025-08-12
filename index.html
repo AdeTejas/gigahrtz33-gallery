@@ -1,426 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore Gigahrtz33, a digital art gallery featuring enhanced photography and AI-generated masterpieces.">
-    <title>Gigahrtz33 - Digital Art Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        /* Reset default styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Lora', serif;
-            line-height: 1.8;
-            color: #333;
-            background: #f5f5f5;
-        }
-
-        /* Navigation Bar */
-        nav {
-            background: #1c2526;
-            color: #f5f5f5;
-            padding: 1.5rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-        }
-
-        nav ul li {
-            margin: 0 2rem;
-        }
-
-        nav ul li a {
-            color: #d4af37;
-            text-decoration: none;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: #f5f5f5;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/hero-background.jpg') top center no-repeat;
-            padding: 15rem 2rem 20rem;
-            text-align: center;
-            color: #f5f5f5;
-            min-height: 100vh; /* Ensure minimum height for visibility */
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: 2px;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            font-style: italic;
-        }
-
-        .hero .btn {
-            background: #d4af37;
-            color: #1c2526;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .hero .btn:hover {
-            background: #f5f5f5;
-            color: #1c2526;
-        }
-
-        /* Gallery Preview Section */
-        .gallery-preview {
-            padding: 3rem 2rem;
-            text-align: center;
-            background: #fafafa;
-        }
-
-        .gallery-preview h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #1c2526;
-        }
-
-        .gallery-preview-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .gallery-preview-item img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #d4af37;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            loading: lazy;
-        }
-
-        .gallery-preview-item img:hover {
-            transform: scale(1.03);
-            border-color: #1c2526;
-        }
-
-        .gallery-preview-item p {
-            margin-top: 0.6rem;
-            font-size: 0.9rem;
-            color: #1c2526;
-            text-align: center;
-            font-style: italic;
-        }
-
-        .gallery-preview .btn {
-            display: inline-block;
-            margin-top: 2rem;
-            background: #d4af37;
-            color: #1c2526;
-            padding: 0.8rem 1.5rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .gallery-preview .btn:hover {
-            background: #f5f5f5;
-            color: #1c2526;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-            z-index: 200;
-        }
-
-        .modal-content {
-            max-width: 90%;
-            max-height: 90vh;
-            object-fit: contain;
-            border: 4px solid #d4af37;
-            border-radius: 10px;
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: #f5f5f5;
-            font-size: 2rem;
-            cursor: pointer;
-            background: #1c2526;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-        }
-
-        .close:hover {
-            background: #d4af37;
-        }
-
-        /* About Section */
-        .about {
-            padding: 5rem 2rem;
-            text-align: center;
-            background: #f5f5f5;
-        }
-
-        .about h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #1c2526;
-        }
-
-        .about p {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            color: #333;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 5rem 2rem;
-            background: #1c2526;
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #d4af37;
-        }
-
-        .contact form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .contact input, .contact textarea {
-            padding: 1rem;
-            border: 1px solid #d4af37;
-            border-radius: 5px;
-            font-family: 'Lora', serif;
-            font-size: 1rem;
-            background: #fafafa;
-            color: #333;
-        }
-
-        .contact textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .contact button {
-            background: #d4af37;
-            color: #1c2526;
-            padding: 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .contact button:hover {
-            background: #f5f5f5;
-            color: #1c2526;
-        }
-
-        /* Footer */
-        footer {
-            background: #1c2526;
-            color: #f5f5f5;
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            nav ul {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            nav ul li {
-                margin: 0.8rem 0;
-            }
-
-            .gallery-preview-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-preview h2, .about h2, .contact h2 {
-                font-size: 2.2rem;
-            }
-
-            .modal-content {
-                max-width: 95%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ade's Demo Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+<body class="bg-yellow-100 font-sans">
+  <!-- Header -->
+  <header class="bg-blue-500 text-white p-4 text-center">
+    <h1 class="text-2xl font-bold">Ade's Cyber Store</h1>
+    <button id="cart-btn" class="mt-2 bg-yellow-50 text-blue-500 px-4 py-2 rounded">Cart (<span id="cart-count">0</span>)</button>
+  </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h1>Gigahrtz33 Digital Art</h1>
-        <p>Explore stunning digital artworks blending enhanced photography and AI-generated masterpieces.</p>
-        <a href="gallery.html" class="btn">Discover Our Art</a>
-    </section>
-
-    <!-- Gallery Preview -->
-    <section class="gallery-preview">
-        <h2>Featured Artworks</h2>
-        <div class="gallery-preview-grid">
-            <div class="gallery-preview-item">
-                <a href="#modal1" class="modal-trigger">
-                    <img src="images/26_01_2024 16_09_49.jpg" alt="AI-Generated Cityscape">
-                </a>
-                <p>AI-Generated Cityscape</p>
-            </div>
-            <div class="gallery-preview-item">
-                <a href="#modal2" class="modal-trigger">
-                    <img src="images/IMG_20241022_185152_237.jpg" alt="Enhanced Photo Portrait">
-                </a>
-                <p>Enhanced Photo Portrait</p>
-            </div>
-            <div class="gallery-preview-item">
-                <a href="#modal3" class="modal-trigger">
-                    <img src="images/base__f92efbc8-0c37-48ce-8aa7-5ab4bc495caa.png" alt="Digital Landscape Art">
-                </a>
-                <p>Digital Landscape Art</p>
-            </div>
-        </div>
-        <a href="gallery.html" class="btn">View Full Gallery</a>
-    </section>
-
-    <!-- Modals -->
-    <div id="modal1" class="modal">
-        <span class="close">×</span>
-        <img src="images/26_01_2024 16_09_49.jpg" alt="AI-Generated Cityscape" class="modal-content">
+  <!-- Product Grid -->
+  <main class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="product bg-white p-4 rounded shadow" data-id="1" data-name="Cyberpunk Poster" data-price="20">
+      <img src="images/cyberpunk-poster.jpg" alt="Cyberpunk Poster" class="w-full h-48 object-cover">
+      <h2 class="text-lg font-bold">Cyberpunk Poster</h2>
+      <p class="text-gray-600">$20.00</p>
+      <button class="add-to-cart bg-blue-500 text-white px-4 py-2 rounded mt-2">Add to Cart</button>
     </div>
-    <div id="modal2" class="modal">
-        <span class="close">×</span>
-        <img src="images/IMG_20241022_185152_237.jpg" alt="Enhanced Photo Portrait" class="modal-content">
+    <div class="product bg-white p-4 rounded shadow" data-id="2" data-name="StudioBooka Tee" data-price="15">
+      <img src="images/studiobooka-tee.jpg" alt="StudioBooka Tee" class="w-full h-48 object-cover">
+      <h2 class="text-lg font-bold">StudioBooka Tee</h2>
+      <p class="text-gray-600">$15.00</p>
+      <button class="add-to-cart bg-blue-500 text-white px-4 py-2 rounded mt-2">Add to Cart</button>
     </div>
-    <div id="modal3" class="modal">
-        <span class="close">×</span>
-        <img src="images/base__f92efbc8-0c37-48ce-8aa7-5ab4bc495caa-large.png" alt="Digital Landscape Art" class="modal-content">
+    <div class="product bg-white p-4 rounded shadow" data-id="3" data-name="PM Advisors Mug" data-price="10">
+      <img src="images/pm-mug.jpg" alt="PM Advisors Mug" class="w-full h-48 object-cover">
+      <h2 class="text-lg font-bold">PM Advisors Mug</h2>
+      <p class="text-gray-600">$10.00</p>
+      <button class="add-to-cart bg-blue-500 text-white px-4 py-2 rounded mt-2">Add to Cart</button>
     </div>
+  </main>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <h2>About Gigahrtz33</h2>
-        <p>Gigahrtz33 is your destination for cutting-edge digital art. We fuse enhanced everyday photography with AI-generated imagery to create unique, vibrant pieces that push creative boundaries. Discover art that resonates with the future.</p>
-    </section>
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+    <div class="bg-white p-6 rounded max-w-md w-full">
+      <h2 class="text-xl font-bold mb-4">Your Cart</h2>
+      <ul id="cart-items" class="mb-4"></ul>
+      <p class="font-bold">Total: $<span id="cart-total">0.00</span></p>
+      <button id="checkout-btn" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">Checkout</button>
+      <button id="close-cart" class="bg-gray-300 text-black px-4 py-2 rounded mt-2">Close</button>
+    </div>
+  </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <h2>Contact Us</h2>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
+  <!-- Checkout Modal -->
+  <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+    <div class="bg-white p-6 rounded max-w-md w-full">
+      <h2 class="text-xl font-bold mb-4">Checkout (Demo)</h2>
+      <p class="mb-4">Enter fake details to test:</p>
+      <input type="text" placeholder="Name" class="w-full p-2 mb-2 border rounded">
+      <input type="text" placeholder="Card Number (e.g., 1234-5678-9012-3456)" class="w-full p-2 mb-2 border rounded">
+      <p class="text-sm text-gray-500">*This is a demo, no real payment processed.</p>
+      <button id="complete-purchase" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">Complete Purchase</button>
+      <button id="close-checkout" class="bg-gray-300 text-black px-4 py-2 rounded mt-2">Close</button>
+    </div>
+  </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 Gigahrtz33. All rights reserved.</p>
-    </footer>
-
-    <script>
-        // JavaScript to handle modal functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const modals = document.querySelectorAll('.modal');
-            const triggers = document.querySelectorAll('.modal-trigger');
-            const closes = document.querySelectorAll('.close');
-
-            triggers.forEach(trigger => {
-                trigger.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const modalId = this.getAttribute('href');
-                    document.querySelector(modalId).style.display = 'flex';
-                });
-            });
-
-            closes.forEach(close => {
-                close.addEventListener('click', function() {
-                    this.parentElement.style.display = 'none';
-                });
-            });
-
-            // Close modal when clicking outside
-            window.addEventListener('click', function(e) {
-                modals.forEach(modal => {
-                    if (e.target === modal) {
-                        modal.style.display = 'none';
-                    }
-                });
-            });
-        });
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
