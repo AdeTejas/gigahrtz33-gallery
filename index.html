@@ -20,46 +20,46 @@
 
   <!-- Product Grid -->
   <main class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
-    <div class="product bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300" data-id="1" data-name="Cyberpunk Poster" data-price="20">
+    <div class="product bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-blue-500/20" data-id="1" data-name="Cyberpunk Poster" data-price="20">
       <img src="images/cyberpunk-poster.jpg" alt="Cyberpunk Poster" class="w-full h-64 object-cover rounded-t-lg">
       <h2 class="text-xl font-bold mt-2">Cyberpunk Poster</h2>
       <p class="text-pink-400">$20.00</p>
-      <button class="add-to-cart bg-blue-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-blue-500">Add to Cart</button>
+      <button class="add-to-cart bg-blue-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-blue-500 shadow-glow">Add to Cart</button>
     </div>
-    <div class="product bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300" data-id="2" data-name="StudioBooka Tee" data-price="15">
+    <div class="product bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-blue-500/20" data-id="2" data-name="StudioBooka Tee" data-price="15">
       <img src="images/studiobooka-tee.jpg" alt="StudioBooka Tee" class="w-full h-64 object-cover rounded-t-lg">
       <h2 class="text-xl font-bold mt-2">StudioBooka Tee</h2>
       <p class="text-pink-400">$15.00</p>
-      <button class="add-to-cart bg-blue-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-blue-500">Add to Cart</button>
+      <button class="add-to-cart bg-blue-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-blue-500 shadow-glow">Add to Cart</button>
     </div>
-    <div class="product bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300" data-id="3" data-name="PM Advisors Mug" data-price="10">
+    <div class="product bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-blue-500/20" data-id="3" data-name="PM Advisors Mug" data-price="10">
       <img src="images/pm-mug.jpg" alt="PM Advisors Mug" class="w-full h-64 object-cover rounded-t-lg">
       <h2 class="text-xl font-bold mt-2">PM Advisors Mug</h2>
       <p class="text-pink-400">$10.00</p>
-      <button class="add-to-cart bg-blue-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-blue-500">Add to Cart</button>
+      <button class="add-to-cart bg-blue-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-blue-500 shadow-glow">Add to Cart</button>
     </div>
   </main>
 
-  <!-- Cart Modal (unchanged) -->
+  <!-- Cart Modal -->
   <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-20">
-    <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full shadow-2xl">
+    <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full shadow-2xl border border-blue-500/20">
       <h2 class="text-2xl font-bold mb-4 text-blue-400">Your Cart</h2>
       <ul id="cart-items" class="mb-4 text-gray-300"></ul>
       <p class="font-bold text-pink-400">Total: $<span id="cart-total">0.00</span></p>
-      <button id="checkout-btn" class="bg-blue-600 text-white px-4 py-2 rounded mt-4 w-full hover:bg-blue-500">Checkout</button>
+      <button id="checkout-btn" class="bg-blue-600 text-white px-4 py-2 rounded mt-4 w-full hover:bg-blue-500 shadow-glow">Checkout</button>
       <button id="close-cart" class="bg-gray-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-gray-500">Close</button>
     </div>
   </div>
 
-  <!-- Checkout Modal (unchanged) -->
+  <!-- Checkout Modal -->
   <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-20">
-    <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full shadow-2xl">
+    <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full shadow-2xl border border-blue-500/20">
       <h2 class="text-2xl font-bold mb-4 text-blue-400">Checkout (Demo)</h2>
       <p class="mb-4 text-gray-300">Enter fake details to test:</p>
       <input type="text" placeholder="Name" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
       <input type="text" placeholder="Card Number (e.g., 1234-5678-9012-3456)" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white">
       <p class="text-sm text-gray-500">*This is a demo, no real payment processed.</p>
-      <button id="complete-purchase" class="bg-blue-600 text-white px-4 py-2 rounded mt-4 w-full hover:bg-blue-500">Complete Purchase</button>
+      <button id="complete-purchase" class="bg-blue-600 text-white px-4 py-2 rounded mt-4 w-full hover:bg-blue-500 shadow-glow">Complete Purchase</button>
       <button id="close-checkout" class="bg-gray-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-gray-500">Close</button>
     </div>
   </div>
