@@ -1,0 +1,10 @@
+/* Fix image scaling */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Smooth modal transitions */
+#cart-modal, #checkout-modal {
+  transition: opacity 0.3s ease-in-out;
+}
