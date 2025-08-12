@@ -1,10 +1,28 @@
-/* Fix image scaling */
-img {
-  max-width: 100%;
-  height: auto;
+/* Cyber Glitch Effect on Hover */
+.product:hover {
+  animation: glitch 0.3s linear;
 }
 
-/* Smooth modal transitions */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* Neon Glow for Buttons */
+.add-to-cart, #checkout-btn, #complete-purchase {
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Font Fallback */
+body {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Smooth Modal Fade */
 #cart-modal, #checkout-modal {
   transition: opacity 0.3s ease-in-out;
 }
