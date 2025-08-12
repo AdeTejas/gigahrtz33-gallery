@@ -1,13 +1,24 @@
-/* Parallax Cosmic BG */
+body { background: linear-gradient(to bottom, #0a0a0a, #1a1a2e); }
+
 #background-parallax {
-  background: url('images/stars.jpg') repeat; /* Grab a space bg */
+  background: url('images/stars.jpg') repeat; /* Add a space bg image */
   background-size: cover;
   opacity: 0.4;
   transform: translateY(0);
   transition: transform 0.1s linear;
 }
 
-/* On scroll: JS will handle parallax shift */
+.product:hover { animation: glitch 0.3s linear; }
 
-/* Existing glitch, glow, particles – amp opacity for immersion */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
 .shadow-glow { box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); }
+
+#cart-modal, #checkout-modal, #ai-modal { transition: opacity 0.3s ease-in-out; }
