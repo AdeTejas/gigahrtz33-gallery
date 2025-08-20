@@ -1,37 +1,175 @@
-:root {
-  --midnight: #111827;
-  --gold: #FFD700;
-  --emerald: #064E3B;
-  --silver: #A1A1AA;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Trendie Booth</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-midnight text-white font-montserrat relative overflow-hidden">
+  <div id="background-parallax" class="absolute inset-0 pointer-events-none"></div>
 
-body { background: var(--midnight); font-family: 'Montserrat', sans-serif; }
+  <!-- Nav Bar -->
+  <nav class="bg-gradient-to-r from-midnight to-gray-800 p-4 shadow-lg relative z-10 flex items-center justify-between">
+    <h1 class="text-2xl font-bold tracking-wider text-gold">The Trendie Booth</h1>
+    <div class="flex items-center space-x-4">
+      <input type="text" placeholder="Search products..." class="p-2 rounded bg-gray-900 text-white border border-silver">
+      <select class="p-2 rounded bg-gray-900 text-white border border-silver">
+        <option>Categories</option>
+        <option>Posters</option>
+        <option>Apparel</option>
+        <option>Accessories</option>
+      </select>
+      <button id="cart-btn" class="bg-gold text-midnight px-4 py-2 rounded hover:bg-yellow-400">Cart (<span id="cart-count">0</span>)</button>
+      <button id="ai-chat-btn" class="bg-emerald text-white px-4 py-2 rounded hover:bg-green-700">Ask AI</button>
+    </div>
+  </nav>
 
-#background-parallax {
-  background: url('https://source.unsplash.com/random/1920x1080/?stars') repeat;
-  background-size: cover;
-  opacity: 0.4;
-  transform: translateY(0);
-  transition: transform 0.1s linear;
-}
+  <!-- Hero Banner -->
+  <section class="hero relative z-10 text-center py-20 bg-cover bg-center" style="background-image: url('https://source.unsplash.com/random/1920x600/?cyberpunk,neon');">
+    <div class="bg-black bg-opacity-50 py-20">
+      <h2 class="text-4xl font-bold mb-4 text-gold">Elevate Your Style Universe</h2>
+      <p class="text-xl mb-6">Premium, Sustainable Gear for Visionaries</p>
+      <button class="bg-gold text-midnight px-6 py-3 rounded hover:bg-yellow-400 shadow-glow">Shop Now</button>
+    </div>
+  </section>
 
-.product:hover { animation: glitch 0.3s linear; }
+  <!-- Products – Unsplash mocks -->
+  <main class="container mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 relative z-10">
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="1" data-name="Cyberpunk Poster" data-price="20" data-desc="Neon-dystopia wall art, carbon neutral print.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/random/400x400/?cyberpunk,neon" alt="Cyberpunk Poster">
+      <h2 class="text-xl font-bold mt-2">Cyberpunk Poster</h2>
+      <p class="text-gold">$20.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★☆ (42 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="2" data-name="StudioBooka Tee" data-price="15" data-desc="App-branded merch, sustainable fabric.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/random/400x400/?tshirt,gold" alt="StudioBooka Tee">
+      <h2 class="text-xl font-bold mt-2">StudioBooka Tee</h2>
+      <p class="text-gold">$15.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★★ (35 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="3" data-name="PM Advisors Mug" data-price="10" data-desc="Advisor fuel, eco-ceramic.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/random/400x400/?mug,emerald" alt="PM Advisors Mug">
+      <h2 class="text-xl font-bold mt-2">PM Advisors Mug</h2>
+      <p class="text-gold">$10.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★☆ (28 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="4" data-name="Neon Hoodie" data-price="45" data-desc="Glow-in-dark hoodie for night runners.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/random/400x400/?hoodie,neon" alt="Neon Hoodie">
+      <h2 class="text-xl font-bold mt-2">Neon Hoodie</h2>
+      <p class="text-gold">$45.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★★ (50 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="5" data-name="Futuristic Glasses" data-price="80" data-desc="Specs for virtual overlays.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/random/400x400/?glasses,futuristic" alt="Futuristic Glasses">
+      <h2 class="text-xl font-bold mt-2">Futuristic Glasses</h2>
+      <p class="text-gold">$80.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★☆ (62 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="6" data-name="Sustainable Tote" data-price="25" data-desc="Eco-bag for daily hauls.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/random/400x400/?tote,eco" alt="Sustainable Tote">
+      <h2 class="text-xl font-bold mt-2">Sustainable Tote</h2>
+      <p class="text-gold">$25.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★★ (45 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="7" data-name="Dystopian Cap" data-price="18" data-desc="Hat with hidden tech pocket.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/random/400x400/?cap,dystopian" alt="Dystopian Cap">
+      <h2 class="text-xl font-bold mt-2">Dystopian Cap</h2>
+      <p class="text-gold">$18.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★☆ (30 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="8" data-name="Neon Wallet" data-price="30" data-desc="RFID-blocked for urban warriors.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/random/400x400/?wallet,neon" alt="Neon Wallet">
+      <h2 class="text-xl font-bold mt-2">Neon Wallet</h2>
+      <p class="text-gold">$30.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★★ (55 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="9" data-name="Eco Laptop Sleeve" data-price="35" data-desc="Padded protection for tech nomads.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/random/400x400/?sleeve,eco" alt="Eco Laptop Sleeve">
+      <h2 class="text-xl font-bold mt-2">Eco Laptop Sleeve</h2>
+      <p class="text-gold">$35.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★☆ (40 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+    </div>
+  </main>
 
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
-}
+  <!-- Footer -->
+  <footer class="bg-gray-900 p-6 text-center relative z-10 border-top border-silver">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div>
+        <h3 class="text-lg font-bold text-gold">About Us</h3>
+        <p>Premium gear for the discerning futurist. Sustainable & luxurious.</p>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-gold">Links</h3>
+        <ul class="text-silver">
+          <li><a href="#" class="hover:text-gold">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-gold">Terms of Service</a></li>
+          <li><a href="#" class="hover:text-gold">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-gold">Follow Us</h3>
+        <p class="text-silver">Instagram | X | TikTok</p>
+      </div>
+    </div>
+    <p class="mt-4 text-sm text-silver">© 2025 Trendie Booth. All rights reserved.</p>
+  </footer>
 
-.shadow-glow { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); } /* Gold glow */
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-20">
+    <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full shadow-2xl border border-silver">
+      <h2 class="text-2xl font-bold mb-4 text-gold">Your Cart</h2>
+      <ul id="cart-items" class="mb-4 text-silver"></ul>
+      <p class="font-bold text-gold">Total: $<span id="cart-total">0.00</span></p>
+      <button id="checkout-btn" class="bg-gold text-midnight px-4 py-2 rounded mt-4 w-full hover:bg-yellow-400 shadow-glow">Checkout</button>
+      <button id="close-cart" class="bg-gray-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-gray-500">Close</button>
+    </div>
+  </div>
 
-#cart-modal, #checkout-modal, #ai-modal, #product-detail-modal { transition: opacity 0.3s ease-in-out; }
+  <!-- Checkout Modal -->
+  <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-20">
+    <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full shadow-2xl border border-silver">
+      <h2 class="text-2xl font-bold mb-4 text-gold">Checkout (Demo)</h2>
+      <p class="mb-4 text-silver">Enter fake details to test:</p>
+      <input type="text" placeholder="Name" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white border-silver">
+      <input type="text" placeholder="Card Number (e.g., 1234-5678-9012-3456)" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white border-silver">
+      <p class="text-sm text-gray-500">*This is a demo, no real payment processed. Secured by Mock Blockchain.</p>
+      <button id="complete-purchase" class="bg-gold text-midnight px-4 py-2 rounded mt-4 w-full hover:bg-yellow-400 shadow-glow">Complete Purchase</button>
+      <button id="close-checkout" class="bg-gray-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-gray-500">Close</button>
+    </div>
+  </div>
 
-.hero { opacity: 0.9; background-blend-mode: overlay; } /* Premium overlay */
-.reviews { margin-bottom: 0.25rem; color: var(--gold); }
-.border-top { border-top: 1px solid var(--silver); }
-nav input, nav select { border-color: var(--silver); } /* Silver borders */
-footer ul li { margin-bottom: 4px; } /* Clean footer */
+  <!-- AI Modal -->
+  <div id="ai-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-20">
+    <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full shadow-2xl border border-silver">
+      <h2 class="text-2xl font-bold mb-4 text-gold">Grok-Inspired AI</h2>
+      <input id="ai-input" type="text" placeholder="What're you hunting?" class="w-full p-2 mb-2 border rounded bg-gray-700 text-white border-silver">
+      <div id="ai-response" class="text-silver mb-4"></div>
+      <button id="ai-submit" class="bg-emerald text-white px-4 py-2 rounded w-full hover:bg-green-700">Query</button>
+      <button id="close-ai" class="bg-gray-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-gray-500">Close</button>
+    </div>
+  </div>
+
+  <!-- Product Detail Modal -->
+  <div id="product-detail-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-20">
+    <div class="bg-gray-800 p-6 rounded-lg max-w-md w-full shadow-2xl border border-silver">
+      <h2 id="detail-name" class="text-2xl font-bold mb-4 text-gold"></h2>
+      <p id="detail-desc" class="text-silver mb-4"></p>
+      <button id="close-detail" class="bg-gray-600 text-white px-4 py-2 rounded w-full hover:bg-gray-500">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
