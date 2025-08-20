@@ -13,8 +13,8 @@ body { background: var(--midnight); font-family: 'Montserrat', sans-serif; min-h
   opacity: 0.4;
   transform: translateY(0);
   transition: transform 0.3s ease-in-out;
-  height: 100%; /* Ensures full height for parallax */
-  z-index: -1; /* Behind content */
+  height: 100%;
+  z-index: -1;
 }
 
 .product:hover { animation: glitch 0.3s linear; }
