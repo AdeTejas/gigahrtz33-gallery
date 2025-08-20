@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-midnight text-white font-montserrat relative overflow-hidden">
+<body class="bg-midnight text-white font-montserrat relative">
   <div id="background-parallax" class="absolute inset-0 pointer-events-none"></div>
 
   <!-- Nav Bar -->
@@ -28,7 +28,7 @@
   </nav>
 
   <!-- Hero Banner -->
-  <section class="hero relative z-10 text-center py-20 bg-cover bg-center" style="background-image: url('https://source.unsplash.com/random/1920x600/?cyberpunk,neon');">
+  <section class="hero relative z-10 text-center py-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=600&q=80');">
     <div class="bg-black bg-opacity-50 py-20">
       <h2 class="text-4xl font-bold mb-4 text-gold">Elevate Your Style Universe</h2>
       <p class="text-xl mb-6">Premium, Sustainable Gear for Visionaries</p>
@@ -36,31 +36,67 @@
     </div>
   </section>
 
-  <!-- Products – Unsplash mocks -->
+  <!-- Products -->
   <main class="container mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 relative z-10">
     <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="1" data-name="Cyberpunk Poster" data-price="20" data-desc="Neon-dystopia wall art, carbon neutral print.">
-      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/random/400x400/?cyberpunk,neon" alt="Cyberpunk Poster">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/400x400/?cyberpunk,neon" loading="lazy" alt="Cyberpunk Poster" onerror="console.error('Image 1 failed to load:', this.src)">
       <h2 class="text-xl font-bold mt-2">Cyberpunk Poster</h2>
       <p class="text-gold">$20.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
       <div class="reviews text-yellow-300 text-sm">★★★★☆ (42 reviews)</div>
       <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
     </div>
     <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="2" data-name="StudioBooka Tee" data-price="15" data-desc="App-branded merch, sustainable fabric.">
-      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/random/400x400/?tshirt,gold" alt="StudioBooka Tee">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/400x400/?tshirt,gold" loading="lazy" alt="StudioBooka Tee" onerror="console.error('Image 2 failed to load:', this.src)">
       <h2 class="text-xl font-bold mt-2">StudioBooka Tee</h2>
       <p class="text-gold">$15.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
       <div class="reviews text-yellow-300 text-sm">★★★★★ (35 reviews)</div>
       <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
     </div>
     <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="3" data-name="PM Advisors Mug" data-price="10" data-desc="Advisor fuel, eco-ceramic.">
-      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/random/400x400/?mug,emerald" alt="PM Advisors Mug">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/400x400/?mug,emerald" loading="lazy" alt="PM Advisors Mug" onerror="console.error('Image 3 failed to load:', this.src)">
       <h2 class="text-xl font-bold mt-2">PM Advisors Mug</h2>
       <p class="text-gold">$10.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
       <div class="reviews text-yellow-300 text-sm">★★★★☆ (28 reviews)</div>
       <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
     </div>
     <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="4" data-name="Neon Hoodie" data-price="45" data-desc="Glow-in-dark hoodie for night runners.">
-      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/random/400x400/?hoodie,neon" alt="Neon Hoodie">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/400x400/?hoodie,neon" loading="lazy" alt="Neon Hoodie" onerror="console.error('Image 4 failed to load:', this.src)">
       <h2 class="text-xl font-bold mt-2">Neon Hoodie</h2>
       <p class="text-gold">$45.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
-      <div class="reviews text-yellow-300 text-sm">★★★★
+      <div class="reviews text-yellow-300 text-sm">★★★★★ (50 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="5" data-name="Futuristic Glasses" data-price="80" data-desc="Specs for virtual overlays.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/400x400/?glasses,futuristic" loading="lazy" alt="Futuristic Glasses" onerror="console.error('Image 5 failed to load:', this.src)">
+      <h2 class="text-xl font-bold mt-2">Futuristic Glasses</h2>
+      <p class="text-gold">$80.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★☆ (62 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="6" data-name="Sustainable Tote" data-price="25" data-desc="Eco-bag for daily hauls.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/400x400/?tote,eco" loading="lazy" alt="Sustainable Tote" onerror="console.error('Image 6 failed to load:', this.src)">
+      <h2 class="text-xl font-bold mt-2">Sustainable Tote</h2>
+      <p class="text-gold">$25.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★★ (45 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="7" data-name="Dystopian Cap" data-price="18" data-desc="Hat with hidden tech pocket.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/400x400/?cap,dystopian" loading="lazy" alt="Dystopian Cap" onerror="console.error('Image 7 failed to load:', this.src)">
+      <h2 class="text-xl font-bold mt-2">Dystopian Cap</h2>
+      <p class="text-gold">$18.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★☆ (30 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="8" data-name="Neon Wallet" data-price="30" data-desc="RFID-blocked for urban warriors.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/400x400/?wallet,neon" loading="lazy" alt="Neon Wallet" onerror="console.error('Image 8 failed to load:', this.src)">
+      <h2 class="text-xl font-bold mt-2">Neon Wallet</h2>
+      <p class="text-gold">$30.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★★ (55 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="9" data-name="Eco Laptop Sleeve" data-price="35" data-desc="Padded protection for tech nomads.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="https://source.unsplash.com/400x400/?sleeve,eco" loading="lazy" alt="Eco Laptop Sleeve" onerror="console.error('Image 9 failed to load:', this.src)">
+      <h2 class="text-xl font-bold mt-2">Eco Laptop Sleeve</h2>
+      <p class="text-gold">$35.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★☆ (40 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
