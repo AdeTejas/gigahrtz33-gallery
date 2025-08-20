@@ -5,74 +5,147 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Trendie Booth</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.min.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-900 text-white font-orbitron relative overflow-hidden">
+<body class="bg-midnight text-white font-montserrat relative overflow-hidden">
   <div id="background-parallax" class="absolute inset-0 pointer-events-none"></div>
 
-  <!-- Nav Bar -->
-  <nav class="bg-gradient-to-r from-blue-900 to-purple-900 p-4 shadow-lg relative z-10 flex items-center justify-between">
-    <h1 class="text-2xl font-bold tracking-wider">The Trendie Booth</h1>
+  <!-- Nav Bar – gold accents -->
+  <nav class="bg-gradient-to-r from-midnight to-gray-800 p-4 shadow-lg relative z-10 flex items-center justify-between">
+    <h1 class="text-2xl font-bold tracking-wider text-gold">The Trendie Booth</h1>
     <div class="flex items-center space-x-4">
-      <input type="text" placeholder="Search products..." class="p-2 rounded bg-gray-800 text-white border border-blue-500">
-      <select class="p-2 rounded bg-gray-800 text-white">
+      <input type="text" placeholder="Search products..." class="p-2 rounded bg-gray-900 text-white border border-gold">
+      <select class="p-2 rounded bg-gray-900 text-white border border-gold">
         <option>Categories</option>
         <option>Posters</option>
         <option>Apparel</option>
         <option>Accessories</option>
       </select>
-      <button id="cart-btn" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-600">Cart (<span id="cart-count">0</span>)</button>
-      <button id="ai-chat-btn" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600">Ask AI</button>
+      <button id="cart-btn" class="bg-gold text-midnight px-4 py-2 rounded hover:bg-yellow-400">Cart (<span id="cart-count">0</span>)</button>
+      <button id="ai-chat-btn" class="bg-emerald text-white px-4 py-2 rounded hover:bg-green-700">Ask AI</button>
     </div>
   </nav>
 
-  <!-- Hero Banner -->
+  <!-- Hero Banner – premium overlay -->
   <section class="hero relative z-10 text-center py-20 bg-cover bg-center" style="background-image: url('images/hero-banner.jpg');">
-    <h2 class="text-4xl font-bold mb-4">Dive into Dystopian Swag</h2>
-    <p class="text-xl mb-6">Sustainable, AR-Ready Gear for the Multiverse</p>
-    <button class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-500 shadow-glow">Shop Now</button>
+    <div class="bg-black bg-opacity-50 py-20">
+      <h2 class="text-4xl font-bold mb-4 text-gold">Elevate Your Style Universe</h2>
+      <p class="text-xl mb-6">Premium, Sustainable Gear for Visionaries</p>
+      <button class="bg-gold text-midnight px-6 py-3 rounded hover:bg-yellow-400 shadow-glow">Shop Now</button>
+    </div>
   </section>
 
-  <!-- Products – unchanged core, but add review mocks -->
-  <main class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
-    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-blue-500/30" data-id="1" data-name="Cyberpunk Poster" data-price="20" data-desc="Neon-dystopia wall art, carbon neutral print.">
+  <!-- Products – 9 mocks in 3x3 grid -->
+  <main class="container mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 relative z-10">
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="1" data-name="Cyberpunk Poster" data-price="20" data-desc="Neon-dystopia wall art, carbon neutral print.">
       <img class="product-img w-full h-64 object-cover rounded-t-lg" src="images/cyberpunk-poster.jpg" alt="Cyberpunk Poster">
       <div class="ar-preview w-full h-64 hidden"></div>
       <h2 class="text-xl font-bold mt-2">Cyberpunk Poster</h2>
-      <p class="text-pink-400">$20.00 <span class="text-green-400 ml-2">Carbon Neutral</span></p>
-      <div class="reviews text-yellow-400 text-sm">★★★★☆ (42 reviews)</div>
-      <button class="add-to-cart bg-blue-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-blue-500 shadow-glow">Add to Cart</button>
-      <button class="ar-btn bg-green-600 text-white px-4 py-2 rounded mt-2 w-full hover:bg-green-500">AR View</button>
+      <p class="text-gold">$20.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★☆ (42 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+      <button class="ar-btn bg-emerald text-white px-4 py-2 rounded mt-2 w-full hover:bg-green-700">AR View</button>
     </div>
-    <!-- Repeat for Tee and Mug, add reviews: ★★★★☆ (35 reviews), etc. -->
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="2" data-name="StudioBooka Tee" data-price="15" data-desc="App-branded merch, sustainable fabric.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="images/studiobooka-tee.jpg" alt="StudioBooka Tee">
+      <div class="ar-preview w-full h-64 hidden"></div>
+      <h2 class="text-xl font-bold mt-2">StudioBooka Tee</h2>
+      <p class="text-gold">$15.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★★ (35 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+      <button class="ar-btn bg-emerald text-white px-4 py-2 rounded mt-2 w-full hover:bg-green-700">AR View</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="3" data-name="PM Advisors Mug" data-price="10" data-desc="Advisor fuel, eco-ceramic.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="images/pm-mug.jpg" alt="PM Advisors Mug">
+      <div class="ar-preview w-full h-64 hidden"></div>
+      <h2 class="text-xl font-bold mt-2">PM Advisors Mug</h2>
+      <p class="text-gold">$10.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★☆ (28 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+      <button class="ar-btn bg-emerald text-white px-4 py-2 rounded mt-2 w-full hover:bg-green-700">AR View</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="4" data-name="Neon Hoodie" data-price="45" data-desc="Glow-in-dark hoodie for night runners.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="images/neon-hoodie.jpg" alt="Neon Hoodie">
+      <div class="ar-preview w-full h-64 hidden"></div>
+      <h2 class="text-xl font-bold mt-2">Neon Hoodie</h2>
+      <p class="text-gold">$45.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★★ (50 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+      <button class="ar-btn bg-emerald text-white px-4 py-2 rounded mt-2 w-full hover:bg-green-700">AR View</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="5" data-name="AR Glasses Mock" data-price="80" data-desc="Futuristic specs for virtual overlays.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="images/ar-glasses.jpg" alt="AR Glasses Mock">
+      <div class="ar-preview w-full h-64 hidden"></div>
+      <h2 class="text-xl font-bold mt-2">AR Glasses Mock</h2>
+      <p class="text-gold">$80.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★☆ (62 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+      <button class="ar-btn bg-emerald text-white px-4 py-2 rounded mt-2 w-full hover:bg-green-700">AR View</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="6" data-name="Sustainable Tote" data-price="25" data-desc="Eco-bag for daily hauls.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="images/sustainable-tote.jpg" alt="Sustainable Tote">
+      <div class="ar-preview w-full h-64 hidden"></div>
+      <h2 class="text-xl font-bold mt-2">Sustainable Tote</h2>
+      <p class="text-gold">$25.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★★ (45 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+      <button class="ar-btn bg-emerald text-white px-4 py-2 rounded mt-2 w-full hover:bg-green-700">AR View</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="7" data-name="Dystopian Cap" data-price="18" data-desc="Hat with hidden tech pocket.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="images/dystopian-cap.jpg" alt="Dystopian Cap">
+      <div class="ar-preview w-full h-64 hidden"></div>
+      <h2 class="text-xl font-bold mt-2">Dystopian Cap</h2>
+      <p class="text-gold">$18.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★☆ (30 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+      <button class="ar-btn bg-emerald text-white px-4 py-2 rounded mt-2 w-full hover:bg-green-700">AR View</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="8" data-name="Neon Wallet" data-price="30" data-desc="RFID-blocked for urban warriors.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="images/neon-wallet.jpg" alt="Neon Wallet">
+      <div class="ar-preview w-full h-64 hidden"></div>
+      <h2 class="text-xl font-bold mt-2">Neon Wallet</h2>
+      <p class="text-gold">$30.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★★ (55 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+      <button class="ar-btn bg-emerald text-white px-4 py-2 rounded mt-2 w-full hover:bg-green-700">AR View</button>
+    </div>
+    <div class="product cursor-pointer bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 border border-silver" data-id="9" data-name="Eco Laptop Sleeve" data-price="35" data-desc="Padded protection for tech nomads.">
+      <img class="product-img w-full h-64 object-cover rounded-t-lg" src="images/eco-sleeve.jpg" alt="Eco Laptop Sleeve">
+      <div class="ar-preview w-full h-64 hidden"></div>
+      <h2 class="text-xl font-bold mt-2">Eco Laptop Sleeve</h2>
+      <p class="text-gold">$35.00 <span class="text-emerald ml-2">Carbon Neutral</span></p>
+      <div class="reviews text-yellow-300 text-sm">★★★★☆ (40 reviews)</div>
+      <button class="add-to-cart bg-gold text-midnight px-4 py-2 rounded mt-2 w-full hover:bg-yellow-400 shadow-glow">Add to Cart</button>
+      <button class="ar-btn bg-emerald text-white px-4 py-2 rounded mt-2 w-full hover:bg-green-700">AR View</button>
+    </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 p-6 text-center relative z-10">
+  <!-- Footer – premium links -->
+  <footer class="bg-gray-900 p-6 text-center relative z-10 border-top border-silver">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div>
-        <h3 class="text-lg font-bold">About Us</h3>
-        <p>Cyber gear for the bold. Sustainable & futuristic.</p>
+        <h3 class="text-lg font-bold text-gold">About Us</h3>
+        <p>Premium gear for the discerning futurist. Sustainable & luxurious.</p>
       </div>
       <div>
-        <h3 class="text-lg font-bold">Links</h3>
-        <ul>
-          <li><a href="#" class="hover:text-blue-400">Privacy Policy</a></li>
-          <li><a href="#" class="hover:text-blue-400">Terms of Service</a></li>
-          <li><a href="#" class="hover:text-blue-400">Contact</a></li>
+        <h3 class="text-lg font-bold text-gold">Links</h3>
+        <ul class="text-silver">
+          <li><a href="#" class="hover:text-gold">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-gold">Terms of Service</a></li>
+          <li><a href="#" class="hover:text-gold">Contact</a></li>
         </ul>
       </div>
       <div>
-        <h3 class="text-lg font-bold">Follow Us</h3>
-        <p>Instagram | X | TikTok</p>
+        <h3 class="text-lg font-bold text-gold">Follow Us</h3>
+        <p class="text-silver">Instagram | X | TikTok</p>
       </div>
     </div>
-    <p class="mt-4 text-sm">© 2025 Trendie Booth. All rights reserved.</p>
+    <p class="mt-4 text-sm text-silver">© 2025 Trendie Booth. All rights reserved.</p>
   </footer>
 
-  <!-- Modals – unchanged, but ensure all in -->
+  <!-- Modals unchanged – assume previous -->
 
   <script src="script.js"></script>
 </body>
