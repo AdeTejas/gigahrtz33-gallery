@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Product Click for Detail
   document.querySelectorAll('.product').forEach(product => {
     product.addEventListener('click', (e) => {
-      if (e.target.classList.contains('add-to-cart') || e.target.classList.contains('ar-btn')) return;
+      if (e.target.classList.contains('add-to-cart')) return;
       console.log('Product clicked for detail.');
       const detailModal = document.getElementById('product-detail-modal');
       const detailName = document.getElementById('detail-name');
@@ -77,38 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
         detailModal.classList.remove('hidden');
         if (closeDetail) closeDetail.addEventListener('click', () => detailModal.classList.add('hidden'));
       } else console.error('Detail modal elements missing.');
-    });
-  });
-
-  // AR Preview
-  document.querySelectorAll('.ar-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      console.log('AR button clicked – activating...');
-      const product = btn.parentElement;
-      const preview = product.querySelector('.ar-preview');
-      if (!preview) return console.error('AR preview div missing.');
-      product.classList.add('ar-active');
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, preview.clientWidth / preview.clientHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ alpha: true });
-      renderer.setSize(preview.clientWidth, preview.clientHeight);
-      preview.appendChild(renderer.domElement);
-      const geometry = new THREE.BoxGeometry();
-      const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
-      const cube = new THREE.Mesh(geometry, material);
-      scene.add(cube);
-      const light = new THREE.DirectionalLight(0xffffff, 1);
-      light.position.set(5, 5, 5);
-      scene.add(light);
-      camera.position.z = 5;
-      function animate() {
-        requestAnimationFrame(animate);
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
-        renderer.render(scene, camera);
-      }
-      animate();
-      console.log('AR activated – check for spinning cube.');
     });
   });
 
@@ -132,8 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!aiInput || !aiResponse) return console.error('AI input/response missing.');
     const query = aiInput.value.toLowerCase();
     let res = 'Querying the cosmos...';
-    if (query.includes('cyber')) res = 'Dig the Cyberpunk Poster? AR spin it like a replicant!';
-    else if (query.includes('tee')) res = 'StudioBooka Tee: Sustainable fabric, blockchain-tracked supply.';
+    if (query.includes('cyber')) res = 'Dig the Cyberpunk Poster?';
+    else if (query.includes('tee')) res = 'StudioBooka Tee: Sustainable fabric.';
     else if (query.includes('mug')) res = 'PM Mug: For advisors conquering the stars.';
     aiResponse.textContent = res;
   });
