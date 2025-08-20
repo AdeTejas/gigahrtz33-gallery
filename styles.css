@@ -17,15 +17,10 @@ body { background: var(--midnight); font-family: 'Montserrat', sans-serif; min-h
   z-index: -1;
 }
 
-.product:hover { animation: glitch 0.3s linear; }
-
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
+.product:hover { 
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); 
+  transform: scale(1.05); 
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .shadow-glow { box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
