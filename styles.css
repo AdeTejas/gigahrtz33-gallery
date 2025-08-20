@@ -8,11 +8,11 @@
 body { background: var(--midnight); font-family: 'Montserrat', sans-serif; }
 
 #background-parallax {
-  background: url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') repeat; /* Fixed starry sky */
+  background: url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') repeat;
   background-size: cover;
   opacity: 0.4;
   transform: translateY(0);
-  transition: transform 0.3s ease-in-out; /* Smoother parallax */
+  transition: transform 0.3s ease-in-out;
 }
 
 .product:hover { animation: glitch 0.3s linear; }
@@ -26,13 +26,13 @@ body { background: var(--midnight); font-family: 'Montserrat', sans-serif; }
   100% { transform: translate(0); }
 }
 
-.shadow-glow { box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); } /* Reduced for mobile */
+.shadow-glow { box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
 
 #cart-modal, #checkout-modal, #ai-modal, #product-detail-modal { transition: opacity 0.3s ease-in-out; }
 
-.hero { opacity: 0.9; background-blend-mode: overlay; border: 2px solid var(--gold); } /* Gold border bling */
-.reviews { margin-bottom: 0.25rem; color: var(--gold); font-size: 0.875rem; } /* Better readability */
+.hero { opacity: 0.9; background-blend-mode: overlay; border: 2px solid var(--gold); }
+.reviews { margin-bottom: 0.25rem; color: var(--gold); font-size: 0.875rem; }
 .border-top { border-top: 1px solid var(--silver); }
 nav input, nav select { border-color: var(--silver); }
-nav input:focus, nav select:focus { border-color: var(--gold); outline: none; } /* Gold focus glow */
+nav input:focus, nav select:focus { border-color: var(--gold); outline: none; }
 footer ul li { margin-bottom: 4px; }
