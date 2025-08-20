@@ -5,7 +5,7 @@
   --silver: #A1A1AA;
 }
 
-body { background: var(--midnight); font-family: 'Montserrat', sans-serif; }
+body { background: var(--midnight); font-family: 'Montserrat', sans-serif; min-height: 100vh; }
 
 #background-parallax {
   background: url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') repeat;
@@ -13,6 +13,8 @@ body { background: var(--midnight); font-family: 'Montserrat', sans-serif; }
   opacity: 0.4;
   transform: translateY(0);
   transition: transform 0.3s ease-in-out;
+  height: 100%; /* Ensures full height for parallax */
+  z-index: -1; /* Behind content */
 }
 
 .product:hover { animation: glitch 0.3s linear; }
