@@ -26,12 +26,12 @@ body { background: var(--midnight); font-family: 'Montserrat', sans-serif; }
   100% { transform: translate(0); }
 }
 
-.shadow-glow { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); } /* Gold glow */
+.shadow-glow { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
 
 #cart-modal, #checkout-modal, #ai-modal, #product-detail-modal { transition: opacity 0.3s ease-in-out; }
 
-.hero { opacity: 0.9; background-blend-mode: overlay; } /* Premium overlay */
+.hero { opacity: 0.9; background-blend-mode: overlay; }
 .reviews { margin-bottom: 0.25rem; color: var(--gold); }
 .border-top { border-top: 1px solid var(--silver); }
-nav input, nav select { border-color: var(--silver); } /* Silver borders */
-footer ul li { margin-bottom: 4px; } /* Clean footer */
+nav input, nav select { border-color: var(--silver); }
+footer ul li { margin-bottom: 4px; }
