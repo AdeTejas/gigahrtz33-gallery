@@ -1,7 +1,14 @@
-body { background: linear-gradient(to bottom, #0a0a0a, #1a1a2e); }
+:root {
+  --midnight: #111827;
+  --gold: #FFD700;
+  --emerald: #064E3B;
+  --silver: #A1A1AA;
+}
+
+body { background: var(--midnight); font-family: 'Montserrat', sans-serif; }
 
 #background-parallax {
-  background: url('https://source.unsplash.com/random/1920x1080/?stars') repeat; /* Fallback cosmic bg */
+  background: url('https://source.unsplash.com/random/1920x1080/?stars') repeat;
   background-size: cover;
   opacity: 0.4;
   transform: translateY(0);
@@ -19,7 +26,7 @@ body { background: linear-gradient(to bottom, #0a0a0a, #1a1a2e); }
   100% { transform: translate(0); }
 }
 
-.shadow-glow { box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); }
+.shadow-glow { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); } /* Gold glow */
 
 .ar-preview { display: none; }
 .product-img { display: block; }
@@ -28,9 +35,6 @@ body { background: linear-gradient(to bottom, #0a0a0a, #1a1a2e); }
 
 #cart-modal, #checkout-modal, #ai-modal, #product-detail-modal { transition: opacity 0.3s ease-in-out; }
 
-/* Pro Updates: Hero, Reviews, Nav Polish */
-.hero { opacity: 0.9; } /* Subtle overlay for banner punch */
-.reviews { margin-bottom: 4px; } /* Spacing for social proof pop */
-nav input, nav select { border-color: rgba(0, 255, 255, 0.5); } /* Neon borders for search/category */
-footer ul li { margin-bottom: 4px; } /* Clean link stacking */
-footer { border-top: 1px solid rgba(0, 255, 255, 0.2); } /* Subtle divider for pro footer vibe */
+.hero { opacity: 0.9; background-blend-mode: overlay; } /* Premium overlay */
+.reviews { margin-bottom: 0.25rem; color: var(--gold); }
+.border-top { border-top: 1px solid var(--silver); }
